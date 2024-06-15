@@ -9,12 +9,12 @@ pygame.display.set_caption("Fighters")
 #fighting_ground=600
 
 player1_image=pygame.image.load("image.png").convert_alpha()
-player1_image=pygame.transform.scale(player1_image, (25,60))
+player1_image=pygame.transform.scale(player1_image, (50,120))
 
 player1=Player(player1_image, (100,600))
 #player2=Player()
 
-tasto = {'su': pygame.K_UP, 'giù': pygame.K_DOWN, 'sinistra': pygame.K_LEFT, 'destra': pygame.K_RIGHT}
+tasto = {'su': pygame.K_UP, 'giù': pygame.K_DOWN, 'sinistra': pygame.K_LEFT, 'destra': pygame.K_RIGHT, 'light': pygame.K_0, 'medium': pygame.K_1, 'heavy': pygame.K_2}
 
 game_running=True
 clock=pygame.time.Clock()
@@ -27,11 +27,12 @@ while game_running:
             game_running = False
 
     keys = pygame.key.get_pressed()
+    player1.attack(keys, tasto)
     player1.movimento(keys, tasto)
 
     screen.blit(player1.image, player1.rect)
     pygame.display.flip() 
-    clock.tick(60)  # Cap the frame rate to 60 FPS
+    clock.tick(60)
 
 pygame.quit()
  
